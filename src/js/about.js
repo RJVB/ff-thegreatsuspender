@@ -1,4 +1,4 @@
-/* global chrome, XMLHttpRequest, gsStorage, gsAnalytics, gsUtils */
+/* global chrome, XMLHttpRequest, gsStorage, gsUtils */
 (function(global) {
   'use strict';
 
@@ -11,7 +11,6 @@
 
   function toggleNag(hideNag) {
     gsStorage.setOptionAndSync(gsStorage.NO_NAG, hideNag);
-    gsAnalytics.reportEvent('Donations', 'HidePopupManual', hideNag);
   }
 
   function loadDonateButtons(responseText) {
@@ -26,13 +25,10 @@
     paypalBtn.setAttribute('value', chrome.i18n.getMessage('js_donate_paypal'));
 
     bitcoinBtn.onclick = function() {
-      gsAnalytics.reportEvent('Donations', 'Click', 'coinbase');
     };
     patreonBtn.onclick = function() {
-      gsAnalytics.reportEvent('Donations', 'Click', 'patreon');
     };
     paypalBtn.onclick = function() {
-      gsAnalytics.reportEvent('Donations', 'Click', 'paypal');
     };
 
     document.getElementById('alreadyDonatedToggle').onclick = function() {
@@ -69,6 +65,4 @@
       );
     }
   });
-
-  gsAnalytics.reportPageView('about.html');
 })(this);

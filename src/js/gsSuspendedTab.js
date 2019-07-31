@@ -436,15 +436,11 @@ var gsSuspendedTab = (function() {
       .getElementById('paypalBtn')
       .setAttribute('value', chrome.i18n.getMessage('js_donate_paypal'));
     try {
-      const gsAnalytics = chrome.extension.getBackgroundPage().gsAnalytics;
       _document.getElementById('bitcoinBtn').onclick = function() {
-        gsAnalytics.reportEvent('Donations', 'Click', 'coinbase');
       };
       _document.getElementById('patreonBtn').onclick = function() {
-        gsAnalytics.reportEvent('Donations', 'Click', 'patreon');
       };
       _document.getElementById('paypalBtn').onclick = function() {
-        gsAnalytics.reportEvent('Donations', 'Click', 'paypal');
       };
     } catch (error) {
       gsUtils.warning(error);

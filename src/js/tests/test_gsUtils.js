@@ -20,68 +20,68 @@ testSuites.push(
 
       // Test gsUtils.getRootUrl
       async () => {
-        const rawUrl1 = 'https://google.com';
+        const rawUrl1 = 'https://searchengine.site';
         const isUrl1Valid =
-          gsUtils.getRootUrl(rawUrl1, false, false) === 'google.com' &&
-          gsUtils.getRootUrl(rawUrl1, true, false) === 'google.com' &&
-          gsUtils.getRootUrl(rawUrl1, false, true) === 'https://google.com' &&
-          gsUtils.getRootUrl(rawUrl1, true, true) === 'https://google.com';
+          gsUtils.getRootUrl(rawUrl1, false, false) === 'searchengine.site' &&
+          gsUtils.getRootUrl(rawUrl1, true, false) === 'searchengine.site' &&
+          gsUtils.getRootUrl(rawUrl1, false, true) === 'https://searchengine.site' &&
+          gsUtils.getRootUrl(rawUrl1, true, true) === 'https://searchengine.site';
 
-        const rawUrl2 = 'https://google.com/';
+        const rawUrl2 = 'https://searchengine.site/';
         const isUrl2Valid =
-          gsUtils.getRootUrl(rawUrl2, false, false) === 'google.com' &&
-          gsUtils.getRootUrl(rawUrl2, true, false) === 'google.com' &&
-          gsUtils.getRootUrl(rawUrl2, false, true) === 'https://google.com' &&
-          gsUtils.getRootUrl(rawUrl2, true, true) === 'https://google.com';
+          gsUtils.getRootUrl(rawUrl2, false, false) === 'searchengine.site' &&
+          gsUtils.getRootUrl(rawUrl2, true, false) === 'searchengine.site' &&
+          gsUtils.getRootUrl(rawUrl2, false, true) === 'https://searchengine.site' &&
+          gsUtils.getRootUrl(rawUrl2, true, true) === 'https://searchengine.site';
 
         const rawUrl3 =
-          'https://google.com/search?source=hp&ei=T2HWW9jfGoWJ5wKzt4WgBw&q=rabbits&oq=rabbits&gs_l=psy-ab.3..35i39k1l2j0i67k1l6j0i10k1j0i67k1.1353.2316.0.2448.9.7.0.0.0.0.120.704.4j3.7.0....0...1c.1.64.psy-ab..2.7.701.0..0.0.dk-gx_j1MUI';
+          'https://searchengine.site/search?source=hp&ei=T2HWW9jfGoWJ5wKzt4WgBw&q=rabbits&oq=rabbits&gs_l=psy-ab.3..35i39k1l2j0i67k1l6j0i10k1j0i67k1.1353.2316.0.2448.9.7.0.0.0.0.120.704.4j3.7.0....0...1c.1.64.psy-ab..2.7.701.0..0.0.dk-gx_j1MUI';
         const isUrl3Valid =
-          gsUtils.getRootUrl(rawUrl3, false, false) === 'google.com' &&
-          gsUtils.getRootUrl(rawUrl3, true, false) === 'google.com/search' &&
-          gsUtils.getRootUrl(rawUrl3, false, true) === 'https://google.com' &&
+          gsUtils.getRootUrl(rawUrl3, false, false) === 'searchengine.site' &&
+          gsUtils.getRootUrl(rawUrl3, true, false) === 'searchengine.site/search' &&
+          gsUtils.getRootUrl(rawUrl3, false, true) === 'https://searchengine.site' &&
           gsUtils.getRootUrl(rawUrl3, true, true) ===
-            'https://google.com/search';
+            'https://searchengine.site/search';
 
-        const rawUrl4 = 'www.google.com';
+        const rawUrl4 = 'www.searchengine.site';
         const isUrl4Valid =
-          gsUtils.getRootUrl(rawUrl4, false, false) === 'www.google.com' &&
-          gsUtils.getRootUrl(rawUrl4, true, false) === 'www.google.com' &&
-          gsUtils.getRootUrl(rawUrl4, false, true) === 'www.google.com' &&
-          gsUtils.getRootUrl(rawUrl4, true, true) === 'www.google.com';
+          gsUtils.getRootUrl(rawUrl4, false, false) === 'www.searchengine.site' &&
+          gsUtils.getRootUrl(rawUrl4, true, false) === 'www.searchengine.site' &&
+          gsUtils.getRootUrl(rawUrl4, false, true) === 'www.searchengine.site' &&
+          gsUtils.getRootUrl(rawUrl4, true, true) === 'www.searchengine.site';
 
         const rawUrl5 =
-          'https://github.com/deanoemcke/thegreatsuspender/issues/478#issuecomment-430780678';
+          'https://github.com/torvalds/linux/issues/478#issuecomment-430780678';
         const isUrl5Valid =
           gsUtils.getRootUrl(rawUrl5, false, false) === 'github.com' &&
           gsUtils.getRootUrl(rawUrl5, true, false) ===
-            'github.com/deanoemcke/thegreatsuspender/issues/478' &&
+            'github.com/torvalds/linux/issues/478' &&
           gsUtils.getRootUrl(rawUrl5, false, true) === 'https://github.com' &&
           gsUtils.getRootUrl(rawUrl5, true, true) ===
-            'https://github.com/deanoemcke/thegreatsuspender/issues/478';
+            'https://github.com/torvalds/linux/issues/478';
 
-        const rawUrl6 = 'file:///Users/dean/Downloads/session%20(63).txt';
+        const rawUrl6 = 'file:///Users/username/Downloads/session%20(63).txt';
         const isUrl6Valid =
           gsUtils.getRootUrl(rawUrl6, false, false) ===
-            '/Users/dean/Downloads' &&
+            '/Users/username/Downloads' &&
           gsUtils.getRootUrl(rawUrl6, true, false) ===
-            '/Users/dean/Downloads/session%20(63).txt' &&
+            '/Users/username/Downloads/session%20(63).txt' &&
           gsUtils.getRootUrl(rawUrl6, false, true) ===
-            'file:///Users/dean/Downloads' &&
+            'file:///Users/username/Downloads' &&
           gsUtils.getRootUrl(rawUrl6, true, true) ===
-            'file:///Users/dean/Downloads/session%20(63).txt';
+            'file:///Users/username/Downloads/session%20(63).txt';
 
         const rawUrl7 =
-          'https://analytics.google.com/analytics/web/#/report-home/a52338347w84781065p87884368';
+          'https://subdomain.domain.org/serverdir/web/#/report-home/a52338347w84781065p87884368';
         const isUrl7Valid =
           gsUtils.getRootUrl(rawUrl7, false, false) ===
-            'analytics.google.com' &&
+            'subdomain.domain.org' &&
           gsUtils.getRootUrl(rawUrl7, true, false) ===
-            'analytics.google.com/analytics/web' &&
+            'subdomain.domain.org/serverdir/web' &&
           gsUtils.getRootUrl(rawUrl7, false, true) ===
-            'https://analytics.google.com' &&
+            'https://subdomain.domain.org' &&
           gsUtils.getRootUrl(rawUrl7, true, true) ===
-            'https://analytics.google.com/analytics/web';
+            'https://subdomain.domain.org/serverdir/web';
 
         return assertTrue(
           isUrl1Valid &&

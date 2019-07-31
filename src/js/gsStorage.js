@@ -1,4 +1,4 @@
-/*global chrome, gsAnalytics, gsSession, localStorage, gsUtils */
+/*global chrome, gsSession, localStorage, gsUtils */
 'use strict';
 
 var gsStorage = {
@@ -260,7 +260,6 @@ var gsStorage = {
   saveSettings: function(settings) {
     try {
       localStorage.setItem('gsSettings', JSON.stringify(settings));
-      gsAnalytics.setUserDimensions();
     } catch (e) {
       gsUtils.error(
         'gsStorage',
