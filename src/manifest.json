@@ -11,7 +11,6 @@
     "http://*/*",
     "https://*/*",
     "file://*/*",
-    "chrome://favicon/*",
     "https://greatsuspender.github.io/",
     "contextMenus",
     "cookies"
@@ -36,7 +35,10 @@
     },
     "default_popup": "popup.html"
   },
-  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
   "icons": {
     "16": "img/ic_suspendy_16x16.png",
     "32": "img/ic_suspendy_32x32.png",
