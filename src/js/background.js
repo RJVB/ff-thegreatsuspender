@@ -659,9 +659,9 @@ var tgs = (function() {
         url: chrome.extension.getURL('thanks.html'),
       });
 
-      // test for a save of keyboard shortcuts (chrome://extensions/shortcuts)
-    } else if (url === 'chrome://extensions/shortcuts') {
-      _triggerHotkeyUpdate = true;
+    // test for a save of keyboard shortcuts (chrome://extensions/shortcuts)
+    // } else if (url === 'chrome://extensions/shortcuts') {
+    //   _triggerHotkeyUpdate = true;
     }
   }
 
@@ -1055,9 +1055,9 @@ var tgs = (function() {
     queueNewTabFocusTimer(tabId, windowId, focusedTab);
 
     //test for a save of keyboard shortcuts (chrome://extensions/shortcuts)
-    if (focusedTab.url === 'chrome://extensions/shortcuts') {
-      _triggerHotkeyUpdate = true;
-    }
+    // if (focusedTab.url === 'chrome://extensions/shortcuts') {
+    //   _triggerHotkeyUpdate = true;
+    // }
 
     let discardAfterSuspend = gsStorage.getOption(
       gsStorage.DISCARD_AFTER_SUSPEND
