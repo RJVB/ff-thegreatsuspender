@@ -14,41 +14,41 @@
   }
 
   function loadDonateButtons(responseText) {
-    document.getElementById('donateButtons').innerHTML = responseText;
+    // document.getElementById('donateButtons').innerHTML = responseText;
 
-    var bitcoinBtn = document.getElementById('bitcoinBtn');
-    var patreonBtn = document.getElementById('patreonBtn');
-    var paypalBtn = document.getElementById('paypalBtn');
+    // var bitcoinBtn = document.getElementById('bitcoinBtn');
+    // var patreonBtn = document.getElementById('patreonBtn');
+    // var paypalBtn = document.getElementById('paypalBtn');
 
-    bitcoinBtn.innerHTML = chrome.i18n.getMessage('js_donate_bitcoin');
-    patreonBtn.innerHTML = chrome.i18n.getMessage('js_donate_patreon');
-    paypalBtn.setAttribute('value', chrome.i18n.getMessage('js_donate_paypal'));
+    // bitcoinBtn.innerHTML = chrome.i18n.getMessage('js_donate_bitcoin');
+    // patreonBtn.innerHTML = chrome.i18n.getMessage('js_donate_patreon');
+    // paypalBtn.setAttribute('value', chrome.i18n.getMessage('js_donate_paypal'));
 
-    bitcoinBtn.onclick = function() {
-    };
-    patreonBtn.onclick = function() {
-    };
-    paypalBtn.onclick = function() {
-    };
+    // bitcoinBtn.onclick = function() {
+    // };
+    // patreonBtn.onclick = function() {
+    // };
+    // paypalBtn.onclick = function() {
+    // };
 
-    document.getElementById('alreadyDonatedToggle').onclick = function() {
-      toggleNag(true);
-      window.location.reload();
-    };
-    document.getElementById('donateAgainToggle').onclick = function() {
-      toggleNag(false);
-      window.location.reload();
-    };
+    // document.getElementById('alreadyDonatedToggle').onclick = function() {
+    //   toggleNag(true);
+    //   window.location.reload();
+    // };
+    // document.getElementById('donateAgainToggle').onclick = function() {
+    //   toggleNag(false);
+    //   window.location.reload();
+    // };
   }
 
   gsUtils.documentReadyAndLocalisedAsPromsied(document).then(function() {
     var versionEl = document.getElementById('aboutVersion');
     versionEl.innerHTML = 'v' + chrome.runtime.getManifest().version;
 
-    if (gsStorage.getOption(gsStorage.NO_NAG)) {
-      document.getElementById('donateSection').style.display = 'none';
-      document.getElementById('donatedSection').style.display = 'block';
-    }
+    // if (gsStorage.getOption(gsStorage.NO_NAG)) {
+    //   document.getElementById('donateSection').style.display = 'none';
+    //   document.getElementById('donatedSection').style.display = 'block';
+    // }
 
     var request = new XMLHttpRequest();
     request.onload = () => loadDonateButtons(request.responseText);

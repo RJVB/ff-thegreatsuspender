@@ -56,13 +56,13 @@ var gsSuspendedTab = (function() {
     setTheme(tabView.document, theme, isLowContrastFavicon);
 
     // Set showNag
-    if (
-      !options[gsStorage.NO_NAG] &&
-      (showNag === undefined || showNag === null)
-    ) {
-      //show dude and donate link (randomly 1 of 20 times)
-      showNag = Math.random() > 0.95;
-    }
+    // if (
+    //   !options[gsStorage.NO_NAG] &&
+    //   (showNag === undefined || showNag === null)
+    // ) {
+    //   //show dude and donate link (randomly 1 of 20 times)
+    //   showNag = Math.random() > 0.95;
+    // }
     tgs.setTabStatePropForTabId(tab.id, tgs.STATE_SHOW_NAG, showNag);
 
     if (showNag) {

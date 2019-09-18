@@ -54,7 +54,7 @@ var gsStorage = {
     defaults[gsStorage.ADD_CONTEXT] = true;
     defaults[gsStorage.SYNC_SETTINGS] = true;
     defaults[gsStorage.SUSPEND_TIME] = '60';
-    defaults[gsStorage.NO_NAG] = false;
+    defaults[gsStorage.NO_NAG] = true;
     defaults[gsStorage.WHITELIST] = '';
     defaults[gsStorage.THEME] = 'light';
 
