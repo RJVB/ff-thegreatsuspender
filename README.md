@@ -1,3 +1,24 @@
+# Unofficial The Great Suspender for Firefox
+
+This is a work-in-progress port of "The Great Suspender" WebExtension for Mozilla Firefox and compatible browsers.
+Current TODO could be found in [TODO](TODO).
+You may also submit a bug or pull request via Github.
+
+## Debugging
+
+You may load it as a temporary extension at `about:debugging`
+
+## Building from source
+
+There are two options
+1. Use npm as described in the original README and rename zip/crx into xpi
+2. Use `pack_xpi.sh` or do the same manually
+
+**NOTE**: to install an unsigned xpi you should use Developer or custom build of Firefox with disabled extension signing enforcement. It may also work on some GNU/Linux distros. *Search for it yourself if required*.
+
+
+The rest of README file carried from the original project without change. However **do not** submit bug reports about *this* project to *original author's repository*.
+
 # The Great Suspender
 
 <img src="/src/img/suspendy-guy.png" width="100px" />
