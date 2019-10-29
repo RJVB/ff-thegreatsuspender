@@ -3,7 +3,7 @@
 * New
 H On hold
 
-* Remove autodicardable to avoid code breaking in Firefox
++ Remove autodicardable to avoid code breaking in Firefox
 H Keep up with Firefox changes on autodiscardable: unsupported as of 2019.08
 * Fix screenshots: check Firefox Screenshots
 * Fix Firefox shortcut: Ctrl+Shift+S confilicts with Firefox Screenshots
