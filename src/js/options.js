@@ -100,13 +100,13 @@
   }
 
   function setForceScreenCaptureVisibility(visible) {
-    // if (visible) {
-    //   document.getElementById('forceScreenCaptureContainer').style.display =
-    //     'block';
-    // } else {
-    //   document.getElementById('forceScreenCaptureContainer').style.display =
-    //     'none';
-    // }
+    if (visible) {
+      document.getElementById('forceScreenCaptureContainer').style.display =
+        'block';
+    } else {
+      document.getElementById('forceScreenCaptureContainer').style.display =
+        'none';
+    }
   }
 
   function setSyncNoteVisibility(visible) {
