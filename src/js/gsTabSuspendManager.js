@@ -487,6 +487,8 @@ var gsTabSuspendManager = (function() {
     //   return;
     // }
 
+    // handlePreviewImageResponse(tab, null, "Unable to capture background tabs");
+
     const screenCaptureMode = gsStorage.getOption(gsStorage.SCREEN_CAPTURE);
     const forceScreenCapture = gsStorage.getOption(
       gsStorage.SCREEN_CAPTURE_FORCE
@@ -495,8 +497,8 @@ var gsTabSuspendManager = (function() {
       gsStorage.USE_ALT_SCREEN_CAPTURE_LIB
     );
     const screenCaptureLib = useAlternateScreenCaptureLib
-      ? 'js/dom-to-image.js'
-      : 'js/html2canvas.min.js';
+      ? 'js/dom-to-image-more.js'
+      : 'js/html2canvas.js';
     gsUtils.log(
       tab.id,
       QUEUE_ID,
