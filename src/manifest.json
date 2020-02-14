@@ -13,6 +13,8 @@
     "file://*/*",
     "https://greatsuspender.github.io/",
     "contextMenus",
+    "<all_urls>",
+    "activeTab",
     "cookies"
   ],
   "background": {
