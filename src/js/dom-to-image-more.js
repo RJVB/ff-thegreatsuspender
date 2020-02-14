@@ -9,7 +9,7 @@
     // Default impl options
     var defaultOptions = {
         // Default is to fail on error, no placeholder
-        imagePlaceholder: undefined,
+        imagePlaceholder: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAYklEQVQ4T2NkoBAwIuuPior6j8O8xmXLljVgk8MwYNmyZdgMfcjAwLAAmyFEGfDv3z9FJiamA9gMIcoAkKsiIiIUsBlClAHofkf2JkED0DWDAnrUgOEfBsRkTpzpgBjN6GoA24V1Efr1zoAAAAAASUVORK5CYII=',
         // Default cache bust is false, it will use the cache
         cacheBust: false,
         // Use (existing) authentication credentials for external URIs (CORS requests)
@@ -183,6 +183,7 @@
 
         function newCanvas(domNode, scale) {
             var canvas = document.createElement('canvas');
+            canvas.crossOrigin = "anonymous";
             canvas.width = (options.width || util.width(domNode)) * scale;
             canvas.height = (options.height || util.height(domNode)) * scale;
 
@@ -497,15 +498,23 @@
         function makeImage(uri) {
             if (uri === 'data:,') return Promise.resolve();
             return new Promise(function(resolve, reject) {
+                // Fix Firefox weirdness?
+                var regex = /((?:[\0-\x08\x0B\f\x0E-\x1F\uFFFD\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]))/g;
+                var ur = uri.replace(/;=""/g, '').replace(/%0A/g, '').replace(/&%23xA;/g, '').replace(regex, "");
                 var image = new Image();
+                image.crossOrigin = "anonymous";
                 if(domtoimage.impl.options.useCredentials) {
                     image.crossOrigin = 'use-credentials';
                 }
                 image.onload = function() {
                     resolve(image);
                 };
-                image.onerror = reject;
-                image.src = uri;
+                image.onerror = function(e) {
+                    console.log('make image onerror', e)
+                    console.log(`${ur}`)
+                    reject(e);
+                };//reject;
+                image.src = ur;
             });
         }
 
@@ -527,8 +536,20 @@
                 if(domtoimage.impl.options.useCredentials) {
                     request.withCredentials = true;
                 }
-                request.open('GET', url, true);
-                request.send();
+                try {
+                    request.open('GET', url, true);
+                    request.send();
+                } catch (e) {
+                    console.log(url, e);
+                    var placeholder;
+                    if (domtoimage.impl.options.imagePlaceholder) {
+                        var split = domtoimage.impl.options.imagePlaceholder.split(/,/);
+                        if (split && split[1]) {
+                            placeholder = split[1];
+                        }
+                    }
+                    resolve(placeholder);
+                }
 
                 var placeholder;
                 if (domtoimage.impl.options.imagePlaceholder) {
