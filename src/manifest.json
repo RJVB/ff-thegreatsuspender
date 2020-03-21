@@ -48,7 +48,7 @@
     "128": "img/ic_suspendy_128x128.png"
   },
   "content_security_policy": "script-src 'self'; object-src 'self';",
-  "incognito": "spanning",
+  "incognito": "not_allowed",
   "manifest_version": 2,
   "minimum_chrome_version": "55",
 
