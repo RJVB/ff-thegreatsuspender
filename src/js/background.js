@@ -29,7 +29,6 @@ var tgs = (function() {
   const STATE_UNLOADED_URL = 'unloadedUrl';
   const STATE_HISTORY_URL_TO_REMOVE = 'historyUrlToRemove';
   // const STATE_SET_AUTODISCARDABLE = 'setAutodiscardable';
-  const STATE_SHOW_NAG = 'showNag';
   const STATE_SUSPEND_REASON = 'suspendReason'; // 1=auto-suspend, 2=manual-suspend, 3=discarded
   const STATE_SCROLL_POS = 'scrollPos';
   const STATE_IS_UNSUSPENDING = 'currentlyUnsuspending';
@@ -656,17 +655,10 @@ var tgs = (function() {
   }
 
   function checkForTriggerUrls(tab, url) {
-    // test for special case of a successful donation
-    if (url.indexOf('greatsuspender.github.io/thanks.html') > 0) {
-      gsStorage.setOptionAndSync(gsStorage.NO_NAG, true);
-      chrome.tabs.update(tab.id, {
-        url: chrome.extension.getURL('thanks.html'),
-      });
-
     // test for a save of keyboard shortcuts (chrome://extensions/shortcuts)
-    // } else if (url === 'chrome://extensions/shortcuts') {
+    // if (url === 'chrome://extensions/shortcuts') {
     //   _triggerHotkeyUpdate = true;
-    }
+    // }
   }
 
   function handleUnsuspendedTabStateChanged(tab, changeInfo) {
@@ -883,7 +875,6 @@ var tgs = (function() {
       tab.id,
       STATE_DISABLE_UNSUSPEND_ON_RELOAD
     );
-    let showNag = tgs.getTabStatePropForTabId(tab.id, tgs.STATE_SHOW_NAG);
     clearTabStateForTabId(tab.id);
 
     if (isCurrentFocusedTab(tab)) {
@@ -901,7 +892,7 @@ var tgs = (function() {
     const quickInit =
       gsStorage.getOption(gsStorage.DISCARD_AFTER_SUSPEND) && !tab.active;
     gsSuspendedTab
-      .initTab(tab, tabView, { quickInit, showNag })
+      .initTab(tab, tabView, { quickInit })
       .catch(error => {
         gsUtils.warning(tab.id, error);
       })
@@ -1843,7 +1834,6 @@ var tgs = (function() {
     // STATE_SET_AUTODISCARDABLE,
     STATE_SUSPEND_REASON,
     STATE_SCROLL_POS,
-    STATE_SHOW_NAG,
     getTabStatePropForTabId,
     setTabStatePropForTabId,
 
