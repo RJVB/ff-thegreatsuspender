@@ -20,6 +20,8 @@ var gsSession = (function() {
   let startupLastVersion;
   let syncedSettingsOnInit;
 
+  let browserVersion;
+
   async function initAsPromised() {
     updateUrl = chrome.extension.getURL('update.html');
     updatedUrl = chrome.extension.getURL('updated.html');
@@ -42,6 +44,9 @@ var gsSession = (function() {
     chrome.runtime.onUpdateAvailable.addListener(details => {
       prepareForUpdate(details); //async
     });
+
+    //get and store browser version
+    browserVersion = await browser.runtime.getBrowserInfo();
     gsUtils.log('gsSession', 'init successful');
   }
 
@@ -692,12 +697,18 @@ var gsSession = (function() {
     );
 
     const restoringUrl = chrome.extension.getURL('restoring-window.html');
+    
+    var createData = { url: restoringUrl, focused: false };
+    if (browserVersion.name == "Firefox" && browserVersion.version < "86.0") {
+      // bypass FF < 86 API limitation
+      createData.focused = true;      
+    }
     // Create new window. Important: do not pass in all urls to chrome.windows.create
     // If you load too many windows (or tabs?) like this, then it seems to blow
     // out the GPU memory in the chrome task manager
     // TODO: Report chrome bug
     const newWindow = await gsUtils.createWindowAndWaitForFinishLoading(
-      { url: restoringUrl, focused: false },
+      createData,
       500 // dont actually wait
     );
     const placeholderTab = newWindow.tabs[0];
