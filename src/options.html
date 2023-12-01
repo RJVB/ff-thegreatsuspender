@@ -81,6 +81,10 @@
 					<label for="dontSuspendPinned" class="cbLabel" data-i18n="__MSG_html_options_suspend_no_pinned__"></label>
 				</div>
 				<div class="formRow autoSuspendOption">
+					<input type="checkbox" id="discardInPlaceOfSuspend" class='option' />
+					<label for="discardInPlaceOfSuspend" class="cbLabel" data-i18n="__MSG_html_options_discard_in_place_of_suspend__"></label>
+				</div>
+				<div class="formRow autoSuspendOption">
 					<input type="checkbox" id="dontSuspendForms" class='option' />
 					<label for="dontSuspendForms" class="cbLabel" data-i18n="__MSG_html_options_suspend_no_forms__"></label>
 				</div>
@@ -117,7 +121,7 @@ __MSG_html_options_whitelist_tooltip_line3__
 					<a id="testWhitelistBtn" href='#whitelistLbl' data-i18n="__MSG_html_options_whitelist_test__"></a>
 				</div>
 			</div>
-			<div class="sub-section">
+			<div class="sub-section" id="suspendedOptionsContainer">
 
 				<h2 data-i18n="__MSG_html_options_suspended_title__"></h2>
 				<div class="formRow">
@@ -153,7 +157,7 @@ __MSG_html_options_suspend_discard_after_suspend_tooltip_line3b__">
 
 				</div>
 
-				<div class="formRow">
+				<div class="formRow" id="previewContainer">
 					<label id="previewLbl" class="topLabel" for="preview" data-i18n="__MSG_html_options_suspend_screen_capturing__:&nbsp;&nbsp;"></label>
 					<span data-i18n-tooltip="__MSG_html_options_suspend_screen_capturing_tooltip_line1a__
 __MSG_html_options_suspend_screen_capturing_tooltip_line1b__

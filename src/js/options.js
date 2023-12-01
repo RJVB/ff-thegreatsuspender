@@ -11,6 +11,7 @@
     preview: gsStorage.SCREEN_CAPTURE,
     forceScreenCapture: gsStorage.SCREEN_CAPTURE_FORCE,
     suspendInPlaceOfDiscard: gsStorage.SUSPEND_IN_PLACE_OF_DISCARD,
+    discardInPlaceOfSuspend: gsStorage.DISCARD_IN_PLACE_OF_SUSPEND,
     onlineCheck: gsStorage.IGNORE_WHEN_OFFLINE,
     batteryCheck: gsStorage.IGNORE_WHEN_CHARGING,
     unsuspendOnFocus: gsStorage.UNSUSPEND_ON_FOCUS,
@@ -27,7 +28,14 @@
     whitelist: gsStorage.WHITELIST,
   };
 
+  var hideWhenDiscardSet = [
+    'previewContainer',
+    'suspendedOptionsContainer',
+    'suspendInPlaceOfDiscard',
+  ]
+
   function selectComboBox(element, key) {
+    console.log("conbobox", element, key);
     var i, child;
 
     for (i = 0; i < element.children.length; i += 1) {
@@ -67,6 +75,9 @@
         .classList.remove('reallyHidden');
       document.querySelector('#options-heading').classList.add('reallyHidden');
     }
+
+    var discardSet = gsStorage.getOption(gsStorage.DISCARD_IN_PLACE_OF_SUSPEND);
+      showHideSuspendOnlyOptions(discardSet);
   }
 
   function populateOption(element, value) {
@@ -130,8 +141,18 @@
     );
   }
 
+  function showHideSuspendOnlyOptions(hide) {
+    hideWhenDiscardSet.forEach(elementId => {
+      console.log(elementId);
+      element = document.getElementById(elementId);
+      console.log(element);
+      element.style.visibility = hide ? 'hidden' : 'visible';
+    });
+  }
+
   function handleChange(element) {
     return function() {
+      console.log(element);
       var pref = elementPrefMap[element.id],
         interval;
 
@@ -146,6 +167,9 @@
         if (getOptionValue(element)) {
           setSyncNoteVisibility(false);
         }
+      } else if (pref == gsStorage.DISCARD_IN_PLACE_OF_SUSPEND) {
+        var discardSet = getOptionValue(element);
+        showHideSuspendOnlyOptions(discardSet);
       }
 
       var [oldValue, newValue] = saveChange(element);

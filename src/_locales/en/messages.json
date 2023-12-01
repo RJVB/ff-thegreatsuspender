@@ -68,6 +68,7 @@
     "html_options_suspend_week": { "message": "week" },
     "html_options_suspend_weeks": { "message": "weeks" },
     "html_options_suspend_no_pinned": { "message": "Never suspend pinned tabs" },
+    "html_options_discard_in_place_of_suspend": { "message": "Discard instead of suspending tabs" },
     "html_options_suspend_no_forms": { "message": "Never suspend tabs that contain unsaved form inputs" },
     "html_options_suspend_no_audio": { "message": "Never suspend tabs that are playing audio" },
     "html_options_suspend_only_connected": { "message": "Never suspend tabs when offline" },
