@@ -1188,62 +1188,6 @@ var tgs = (function() {
   }
 
   function checkForNotices() {
-    gsUtils.log('background', 'Checking for notices..');
-    var xhr = new XMLHttpRequest();
-    var lastShownNoticeVersion = gsStorage.fetchNoticeVersion();
-
-    xhr.open('GET', 'https://greatsuspender.github.io/notice.json', true);
-    xhr.timeout = 4000;
-    xhr.setRequestHeader('Cache-Control', 'no-cache');
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.responseText) {
-        var resp;
-        try {
-          resp = JSON.parse(xhr.responseText);
-        } catch (e) {
-          gsUtils.error(
-            'background',
-            'Failed to parse notice response',
-            xhr.responseText
-          );
-          return;
-        }
-
-        if (!resp || !resp.active || !resp.text) {
-          gsUtils.log('background', 'No new notice found');
-          return;
-        }
-
-        //only show notice if it is intended for this extension version
-        var noticeTargetExtensionVersion = String(resp.target);
-        if (
-          noticeTargetExtensionVersion !== chrome.runtime.getManifest().version
-        ) {
-          gsUtils.log(
-            'background',
-            `Notice target extension version: ${noticeTargetExtensionVersion} 
-            does not match actual extension version: ${
-              chrome.runtime.getManifest().version
-            }`
-          );
-          return;
-        }
-
-        //only show notice if it has not already been shown
-        var noticeVersion = String(resp.version);
-        if (noticeVersion <= lastShownNoticeVersion) {
-          gsUtils.log(
-            'background',
-            `Notice version: ${noticeVersion} is not greater than last shown notice version: ${lastShownNoticeVersion}`
-          );
-          return;
-        }
-
-        //show notice - set global notice field (so that it can be trigger to show later)
-        _noticeToDisplay = resp;
-      }
-    };
-    xhr.send();
   }
 
   function requestNotice() {
