@@ -14,9 +14,9 @@
   let isIgnoreForms = false;
   let tempWhitelist = false;
 
-  function formInputListener(e) {
+  function formInputListener(event) {
     if (!isReceivingFormInput && !tempWhitelist) {
-      if (event.keyCode >= 48 && event.keyCode <= 90 && event.target.tagName) {
+      if (event.key >= "0" && event.key <= "z" && event.target.tagName) {
         if (
           event.target.tagName.toUpperCase() === 'INPUT' ||
           event.target.tagName.toUpperCase() === 'TEXTAREA' ||
